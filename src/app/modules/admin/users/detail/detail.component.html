@@ -1,0 +1,134 @@
+<div class="container">
+  <mat-card class="w-100">
+    <div class="row">
+      <div class="col">
+        <button (click)="backMenu()" mat-icon-button matTooltip="Regresar">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </div>
+      <div class="col">
+        <h2 *ngIf="!userId">Nuevo usuario</h2>
+        <h2 *ngIf="userId">{{userId}}</h2>
+      </div>
+      <div class="col-auto">
+        <button [disabled]="form?.invalid" mat-raised-button (click)="saveForm()">GUARDAR</button>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="row pt-3 pb-5">
+      <form *ngIf="form" [formGroup]="form">
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Identificación</mat-label>
+              <input maxlength="10" autocomplete="off" matInput required formControlName="identificacion">
+              <mat-error *ngIf="identificacion?.hasError('required')">
+                Campo requerido
+              </mat-error>
+              <mat-error *ngIf="identificacion?.hasError('uniqueIdentificacion')">
+                El número de identificación ya existe
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Nombres</mat-label>
+              <input appUppercase autocomplete="off" matInput required formControlName="nombres">
+              <mat-error *ngIf="nombres?.hasError('required')">
+                Campo requerido
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Username</mat-label>
+              <input autocomplete="off" matInput required formControlName="username">
+              <mat-error *ngIf="username?.hasError('required')">
+                Campo requerido
+              </mat-error>
+              <mat-error *ngIf="username?.hasError('uniqueUsername')">
+                El username ya existe
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>E-mail</mat-label>
+              <input autocomplete="off" matInput required formControlName="email">
+              <mat-error *ngIf="email?.hasError('required')">
+                Campo requerido
+              </mat-error>
+              <mat-error *ngIf="email?.hasError('email')">
+                E-mail no válido
+              </mat-error>
+              <mat-error *ngIf="email?.hasError('uniqueEmail')">
+                El correo ya existe
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Perfil de usuario</mat-label>
+              <mat-select required formControlName="idRol" (selectionChange)="setDescription($event.value)">
+                <mat-option *ngFor="let rol of roles"
+                            [value]="rol.codigo">
+                  {{rol.titulo}}
+                </mat-option>
+              </mat-select>
+              <mat-hint>
+                {{selectedDescription}}
+              </mat-hint>
+              <mat-error *ngIf="idRol?.hasError('required')">
+                Campo requerido
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Empresa</mat-label>
+              <input autocomplete="off" matInput formControlName="empresa">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Contraseña</mat-label>
+              <input autocomplete="off" type="password" matInput required formControlName="password">
+              <mat-error *ngIf="password?.hasError('required')">
+                Campo requerido
+              </mat-error>
+              <mat-error *ngIf="password?.hasError('minlength')">
+                El campo debe tener al menos 8 caracteres
+              </mat-error>
+              <mat-error *ngIf="password?.hasError('pattern')">
+                <span>La constraseña debe:</span>
+                <ul>
+                  <li>Tener al menos una letra mayúscula</li>
+                  <li>Tener al menos un caracter especial</li>
+                  <li>Tener al menos un número</li>
+                </ul>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Repetir contraseña</mat-label>
+              <input type="password" autocomplete="off" matInput required formControlName="password_confirmation">
+              <mat-error *ngIf="passwordConfirmation?.hasError('required')">
+                Campo requerido
+              </mat-error>
+              <mat-error *ngIf="passwordConfirmation?.hasError('confirmedValidator')">
+                Las contraseñas no coinciden
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </div>
+  </mat-card>
+</div>

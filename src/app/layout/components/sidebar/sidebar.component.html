@@ -1,0 +1,13 @@
+<!-- Sidebar -->
+<div class="bg-white border-right" id="sidebar-wrapper" [ngClass]="status ? 'hide' : 'show'">
+  <div class="sidebar-heading">
+    <a routerLink="/">
+      <img src="assets/img/bp.svg" width="200" height="50" alt="banco-logo.svg">
+    </a>
+  </div>
+  <div class="list-group list-group-flush">
+    <a routerLink="/home" routerLinkActive="active-bp" [routerLinkActiveOptions]="{exact: true}" class="list-group-item list-group-item-action pt-3 pb-3">Inicio</a>
+    <a routerLink="/users" routerLinkActive="active-bp" class="list-group-item list-group-item-action pt-3 pb-3">Usuarios</a>
+  </div>
+</div>
+<!-- /#sidebar-wrapper -->

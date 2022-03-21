@@ -1,0 +1,41 @@
+<div class="container">
+  <mat-card class="w-100">
+    <div class="row">
+      <div class="col-12">
+        <div class="w-100">
+          <mat-form-field appearance="outline"
+                          class="w-100">
+            <mat-icon class="mr-2" matPrefix>search</mat-icon>
+            <mat-label>Buscar</mat-label>
+            <input [formControl]="searchCtrl" matInput autocomplete="off" >
+          </mat-form-field>
+        </div>
+        <button class="w-100 button-add"
+                mat-raised-button (click)="addUser()">Agregar usuario</button>
+        <mat-list>
+          <ng-container *ngIf="(users$ | filterUser: searchCtrl.value) | async as users; else loading">
+            <mat-list-item *ngFor="let user of users">
+              <div mat-list-avatar class="avatar-circle">
+                <span class="initials">{{getInitials(user.nombres)}}</span>
+              </div>
+              <h4 mat-line>{{user.nombres | uppercase}}</h4>
+              <p mat-line>{{user.email}}</p>
+              <p mat-line>{{user.username}}</p>
+              <button matTooltip="Editar" mat-icon-button (click)="edit(user)">
+                <mat-icon class="mat-24">edit</mat-icon>
+              </button>
+              <button matTooltip="Eliminar" color="warn" mat-icon-button (click)="delete(user)">
+                <mat-icon class="mat-24">delete</mat-icon>
+              </button>
+            </mat-list-item>
+          </ng-container>
+          <ng-template #loading>
+            <div class="col-12 text-center">
+              Cargando ...
+            </div>
+          </ng-template>
+        </mat-list>
+      </div>
+    </div>
+  </mat-card>
+</div>

@@ -1,0 +1,23 @@
+.avatar-circle {
+  width: 100px;
+  height: 100px;
+  color: gray;
+  background-color: white;
+  text-align: center;
+  border-radius: 50%;
+  border:1px solid #C4C4C4;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
+
+.initials {
+  position: relative;
+  top: 10px;
+}
+
+.button-add {
+  color: #0F265C;
+  border: 1px solid #FFDD00;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}

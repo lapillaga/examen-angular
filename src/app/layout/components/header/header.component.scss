@@ -1,0 +1,35 @@
+.complete {
+  width: 100% !important;
+  justify-content: end;
+}
+
+.dropdown-item:hover {
+  cursor: pointer;
+}
+
+a {
+  color: #0F265C;
+}
+.avatar-circle {
+  width: 40px;
+  height: 40px;
+  color: gray;
+  background-color: white;
+  text-align: center;
+  border-radius: 50%;
+  border:1px solid #C4C4C4;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
+
+.role {
+  display: block;
+  padding: .5rem 1rem;
+  color: #0F265C;
+}
+
+.initials {
+  position: relative;
+  top: 10px;
+  left: 1px;
+}
